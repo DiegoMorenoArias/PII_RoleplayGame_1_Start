@@ -38,7 +38,7 @@ Cada equipo deberá crear un repo para el desarrollo de este juego. Todos los mi
 
 ## Parte 1: Modelado
 
-En equipo, modelen las clases y las colaboraciones que son necesarias para representar los elementos del juego mencionados.
+En equipo, modelen las clases y las colaboraciones que son necesarias para representar los elementos del juego mencionados. Hola
 
 Recuerden: los personajes deben poder tener items. Por ejemplo, los magos pueden tener un bastón mágico, un libro de hechizos (con hechizos), etc.
 
