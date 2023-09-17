@@ -5,7 +5,7 @@ namespace Library
 {
     public class SpellBook
     {
-        public List<Spell> Spells;
+        public List<Spell> Spells = new List<Spell>{};
 
         public SpellBook()
         {

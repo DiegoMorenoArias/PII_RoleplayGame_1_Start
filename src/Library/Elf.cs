@@ -9,7 +9,7 @@ namespace Library
         private string Name;
         private double Health;
         private double InitialHealth;
-        List<Item> Items;
+        List<Item> Items = new List<Item>{};
 
         public Elf(string name, double health)
         {
@@ -58,6 +58,7 @@ namespace Library
         public void GetHealed()
         {
             this.Health = this.InitialHealth;
+            Console.WriteLine($"{this.Name} fue curado, y ahora tiene {this.Health} puntos de vida.");
         }
         public void HealWizardAlly(Wizard wizard)
         {

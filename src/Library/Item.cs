@@ -5,7 +5,7 @@ namespace Library
 {
     public class Item
     {
-        public static List<Item> Items;
+        public static List<Item> Items = new List<Item>{};
         public string Name;
         //List<string> ValidTypes; usaríamos esto para validar los tipos de character que pueden tener el objeto, pero como el único objeto de este tipo es el spellbook no lo usamos uwu
         private double AttackValue; 

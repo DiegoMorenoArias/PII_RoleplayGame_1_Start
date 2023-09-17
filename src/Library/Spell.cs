@@ -15,7 +15,7 @@ namespace Library
             this.DefenseValue = defenseValue;
         }
 
-        public Spell CreateSpell(string name, double attackValue, double defenseValue)
+        static public Spell CreateSpell(string name, double attackValue, double defenseValue)
         {
             if (!string.IsNullOrWhiteSpace(name) && !double.IsNaN(attackValue) && !double.IsNaN(defenseValue) && attackValue >= 0 && defenseValue >= 0)
             {

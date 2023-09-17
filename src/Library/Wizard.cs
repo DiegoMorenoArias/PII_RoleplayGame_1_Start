@@ -11,7 +11,7 @@ namespace Library
         private double InitialHealth;
         bool HasSpellBook = false;
         SpellBook CharacterSpells = null;
-        List<Item> Items;
+        List<Item> Items = new List<Item>{};
 
         public Wizard(string name, double health)
         {
@@ -69,6 +69,7 @@ namespace Library
         public void GetHealed()
         {
             this.Health = this.InitialHealth;
+            Console.WriteLine($"{this.Name} fue curado, y ahora tiene {this.Health} puntos de vida.");
         }
 
         public void HealWizardAlly(Wizard wizard)
