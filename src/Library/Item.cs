@@ -6,12 +6,12 @@ namespace Library
     class Item
     {
         static List<Item> Items;
-        string Name;
-        string[] ValidTypes;
+        public string Name;
+        List<string> ValidTypes;
         private double AttackValue; 
         private double DefenseValue;
 
-        public Item(string name, string[] validTypes, double attackValue, double defenseValue)
+        public Item(string name, List<string> validTypes, double attackValue, double defenseValue)
         {
             this.Name = name;
             this.ValidTypes = validTypes;

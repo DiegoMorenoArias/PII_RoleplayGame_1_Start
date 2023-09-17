@@ -1,17 +1,21 @@
 using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Library
 {
     class Elf
     {
-        string Name;
-        double Health;
-        Item[] Items;
+        private string Name;
+        private double Health;
+        private double InitialHealth;
+        List<Item> Items;
 
         public Elf(string name, double health)
         {
             this.Name = name;
             this.Health = health;
+            this.InitialHealth = health;
         }
 
         public double GetTotalAttackValue()
@@ -34,21 +38,57 @@ namespace Library
             return total;
         }
 
-        public void GetAttacked(double attackValue)
+        public void GetAttacked(double attackValue, string name)
         {
-            this.Health -= attackValue;
+            this.Health -= attackValue*(100/(100+this.GetTotalDefenseValue())); // usamos la formula de armadura del LoL :)
+            Console.WriteLine($"{name} atacó a {this.Name} por {attackValue*(100/(100+this.GetTotalDefenseValue()))}. \n {this.Name} ahora tiene {this.Health} puntos de vida. \n");
         }
         public void AttackWizard(Wizard wizard)
         {
-            wizard.GetAttacked(this.GetTotalAttackValue());
+            wizard.GetAttacked(this.GetTotalAttackValue(), this.Name);
         }
         public void AttackDwarf(Dwarf dwarf)
         {
-            dwarf.GetAttacked(this.GetTotalAttackValue());
+            dwarf.GetAttacked(this.GetTotalAttackValue(), this.Name);
         }
         public void AttackElf(Elf elf)
         {
-            elf.GetAttacked(this.GetTotalAttackValue());
+            elf.GetAttacked(this.GetTotalAttackValue(), this.Name);
+        }
+        public void GetHealed()
+        {
+            this.Health = this.InitialHealth;
+        }
+        public void HealWizardAlly(Wizard wizard)
+        {
+            wizard.GetHealed();
+        }
+
+        public void HealDwarfAlly(Dwarf dwarf)
+        {
+            dwarf.GetHealed();
+        }
+
+        public void HealElfAlly(Elf elf)
+        {
+            elf.GetHealed();
+        }
+
+        public void AddItem(Item item)
+        {
+            this.Items.Add(item);
+        }
+
+        public void RemoveItem(Item item)
+        {
+            if(this.Items.Contains(item))
+            {
+                this.Items.Remove(item);
+            }
+            else
+            {
+                Console.WriteLine($"{this.Name} no tiene {item.Name}.");
+            }
         }
     }
 }
