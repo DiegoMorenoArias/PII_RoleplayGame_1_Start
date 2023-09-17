@@ -5,7 +5,7 @@ namespace Library
 {
     public class ItemCreator
     {
-        public Item CreateItem(string name, double attackValue, double defenseValue)
+        static public Item CreateItem(string name, double attackValue, double defenseValue)
         {
             if (!string.IsNullOrWhiteSpace(name) && !double.IsNaN(attackValue) && !double.IsNaN(defenseValue) && attackValue >= 0 && defenseValue >= 0)
             {
