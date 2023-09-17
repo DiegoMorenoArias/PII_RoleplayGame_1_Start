@@ -20,10 +20,13 @@ namespace Program
             Spell Fueguito = Spell.CreateSpell("Fuego", 150, 0);
             Spell Aguita = Spell.CreateSpell ("Agua", 20, 50);
             Spell Tormentita = Spell.CreateSpell ("Tormenta", 75, 40);
+            PepeElMago.AddItem(Bastoncito);
+            GonzaloElFlipanteHechizeroSublimeDeLosCojones.AddItem(Espadita);
             PepeElMago.AddSpellToSpellBook(Fueguito);
             GonzaloElFlipanteHechizeroSublimeDeLosCojones.AddSpellToSpellBook(Aguita);
             PepeElMago.AttackWizard(GonzaloElFlipanteHechizeroSublimeDeLosCojones);
             GonzaloElFlipanteHechizeroSublimeDeLosCojones.AttackWizard(PepeElMago);
+            GonzaloElFlipanteHechizeroSublimeDeLosCojones.HealWizardAlly(PepeElMago);
         }
     }
 }
