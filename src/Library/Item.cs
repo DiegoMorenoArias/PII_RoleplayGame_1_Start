@@ -5,7 +5,7 @@ namespace Library
 {
     class Item
     {
-        static List<Item> Items;
+        public static List<Item> Items;
         public string Name;
         List<string> ValidTypes;
         private double AttackValue; 

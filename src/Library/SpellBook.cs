@@ -5,7 +5,7 @@ namespace Library
 {
     class SpellBook
     {
-        List<Spell> Spells;
+        public List<Spell> Spells;
 
         public SpellBook()
         {
@@ -33,6 +33,18 @@ namespace Library
         public void AddSpell(Spell spell)
         {
             this.Spells.Add(spell);
+        }
+
+        public void RemoveSpell(Spell spell)
+        {
+            if(this.Spells.Contains(spell))
+            {
+                this.Spells.Remove(spell);
+            }
+            else
+            {
+                Console.WriteLine("No se encontró este hechizo en el libro.");
+            }
         }
     }
 }

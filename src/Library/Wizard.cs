@@ -10,7 +10,7 @@ namespace Library
         private double Health;
         private double InitialHealth;
         bool HasSpellBook = false;
-        SpellBook Spells = null;
+        SpellBook CharacterSpells = null;
         List<Item> Items;
 
         public Wizard(string name, double health)
@@ -29,7 +29,7 @@ namespace Library
             }
             if(HasSpellBook)
             {
-                total += Spells.GetBookAttackValue();
+                total += CharacterSpells.GetBookAttackValue();
             }
             return total;
         }
@@ -43,7 +43,7 @@ namespace Library
             }
             if(HasSpellBook)
             {
-                total += Spells.GetBookDefenseValue();
+                total += CharacterSpells.GetBookDefenseValue();
             }
             return total;
         }
@@ -106,20 +106,30 @@ namespace Library
         public void AddSpellBook()
         {
             this.HasSpellBook = true;
-            this.Spells = new SpellBook();
+            this.CharacterSpells = new SpellBook();
         }
 
         public void AddSpellToSpellBook(Spell spell)
         {
             if(this.HasSpellBook)
             {
-                this.Spells.AddSpell(spell);
+                this.CharacterSpells.AddSpell(spell);
             }
             else
             {
                 Console.WriteLine($"{this.Name} no tiene libro de hechizos, por lo que no se pudo agregar el hechizo.");
             }
         }
-
+        public void RemoveSpellFromSpellBook(Spell spell)
+        {
+            if(this.CharacterSpells.Spells.Contains(spell))
+            {
+                this.CharacterSpells.RemoveSpell(spell);
+            }
+            else
+            {
+                Console.WriteLine($"{this.Name} no tiene el hechizo en su libro.");
+            }
+        }
     }
 }
