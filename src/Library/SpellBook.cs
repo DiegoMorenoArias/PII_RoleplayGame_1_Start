@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Library
 {
-    class SpellBook
+    public class SpellBook
     {
         public List<Spell> Spells;
 

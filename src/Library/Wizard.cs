@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Library
 {
-    class Wizard
+    public class Wizard
     {
         private string Name;
         private double Health;

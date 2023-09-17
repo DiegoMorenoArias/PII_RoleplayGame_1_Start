@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Library
 {
-    class ItemCreator
+    public class ItemCreator
     {
         public Item CreateItem(string name, double attackValue, double defenseValue)
         {

@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Library
 {
-    class CharacterCreator
+    public class CharacterCreator
     {
         public static Wizard CreateWizard(string name, double health)
         {

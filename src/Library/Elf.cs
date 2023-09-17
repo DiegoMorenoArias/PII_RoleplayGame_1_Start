@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Library
 {
-    class Elf
+    public class Elf
     {
         private string Name;
         private double Health;

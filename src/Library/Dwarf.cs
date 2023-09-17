@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Library
 {
-    class Dwarf
+    public class Dwarf
     {
         private string Name;
         private double Health;

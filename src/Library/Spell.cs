@@ -2,7 +2,7 @@ using System;
 
 namespace Library
 {
-    class Spell
+    public class Spell
     {
         string Name;
         double AttackValue;

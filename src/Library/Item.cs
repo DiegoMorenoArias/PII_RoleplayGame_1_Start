@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Library
 {
-    class Item
+    public class Item
     {
         public static List<Item> Items;
         public string Name;
