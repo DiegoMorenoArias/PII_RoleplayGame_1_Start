@@ -5,11 +5,11 @@ namespace Library
 {
     class ItemCreator
     {
-        public Item CreateItem(string name, double attackValue, double defenseValue, List<string> validTypes)
+        public Item CreateItem(string name, double attackValue, double defenseValue)
         {
             if (!string.IsNullOrWhiteSpace(name) && !double.IsNaN(attackValue) && !double.IsNaN(defenseValue) && attackValue >= 0 && defenseValue >= 0)
             {
-                return new Item(name, validTypes, attackValue, defenseValue);
+                return new Item(name, attackValue, defenseValue);
             }
             else
             {
