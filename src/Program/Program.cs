@@ -8,8 +8,9 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            Wizard PepeElMago = CharacterCreator.CreateWizard("Pepe", 500);
-            PepeElMago.AddSpellBook();
+            Wizard PepeElMago = CharacterCreator.CreateWizard("", 500);
+            Console.WriteLine(PepeElMago.GetType());
+            /*PepeElMago.AddSpellBook();
             Wizard GonzaloElFlipanteHechizeroSublimeDeLosCojones = CharacterCreator.CreateWizard("Gonzalo", 500);
             GonzaloElFlipanteHechizeroSublimeDeLosCojones.AddSpellBook();
             Dwarf EnanoDeViral = CharacterCreator.CreateDwarf("Enanito", 300);
@@ -28,7 +29,7 @@ namespace Program
             GonzaloElFlipanteHechizeroSublimeDeLosCojones.AttackWizard(PepeElMago);
             GonzaloElFlipanteHechizeroSublimeDeLosCojones.HealWizardAlly(PepeElMago);
             GonzaloElFlipanteHechizeroSublimeDeLosCojones.AttackDwarf(EnanoDeViral);
-            PepeElMago.HealDwarfAlly(EnanoDeViral);
+            PepeElMago.HealDwarfAlly(EnanoDeViral);*/
         }
     }
 }
