@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Library\Library.csproj" />
-    <ProjectReference Include="..\Test\Library.Test\Library.Test.csproj" />
+    <ProjectReference Include="..\..\Tests\Tests.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

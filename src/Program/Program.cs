@@ -27,6 +27,7 @@ namespace Program
             PepeElMago.AttackWizard(GonzaloElFlipanteHechizeroSublimeDeLosCojones);
             GonzaloElFlipanteHechizeroSublimeDeLosCojones.AttackWizard(PepeElMago);
             GonzaloElFlipanteHechizeroSublimeDeLosCojones.HealWizardAlly(PepeElMago);
+            GonzaloElFlipanteHechizeroSublimeDeLosCojones.AttackDwarf(EnanoDeViral);
             PepeElMago.HealDwarfAlly(EnanoDeViral);
         }
     }
