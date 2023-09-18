@@ -55,24 +55,24 @@ namespace Library
         {
             elf.GetAttacked(this.GetTotalAttackValue(), this.Name);
         }
-        public void GetHealed()
+        public void GetHealed(string healerName)
         {
             this.Health = this.InitialHealth;
-            Console.WriteLine($"{this.Name} fue curado, y ahora tiene {this.Health} puntos de vida.");
+            Console.WriteLine($"{this.Name} fue curado por {healerName}, y ahora tiene {this.Health} puntos de vida.");
         }
         public void HealWizardAlly(Wizard wizard)
         {
-            wizard.GetHealed();
+            wizard.GetHealed(this.Name);
         }
 
         public void HealDwarfAlly(Dwarf dwarf)
         {
-            dwarf.GetHealed();
+            dwarf.GetHealed(this.Name);
         }
 
         public void HealElfAlly(Elf elf)
         {
-            elf.GetHealed();
+            elf.GetHealed(this.Name);
         }
 
         public void AddItem(Item item)
