@@ -9,8 +9,8 @@ namespace Library
         private string Name;
         private double Health;
         private double InitialHealth;
-        bool HasSpellBook = false;
-        SpellBook CharacterSpells = null;
+        bool HasSpellBook = false; // Bool que sirve para saber si el mago tiene libro de hechizos o no, porque podría no tenerlo.
+        SpellBook CharacterSpells = null; // Libro de hechizos del mago, comienza siendo null porque no necesariamente un mago tendrá uno.
         List<Item> Items = new List<Item>{};
 
         public Wizard(string name, double health)
@@ -27,7 +27,8 @@ namespace Library
             {
                 total += item.GetItemAttackValue();
             }
-            if(HasSpellBook)
+            if(HasSpellBook) // Como es un mago, en caso de tener libro de hechizos, para calcular su daño total también se toma en cuenta
+            // el attackValue del libro de hechizos.
             {
                 total += CharacterSpells.GetBookAttackValue();
             }
@@ -41,7 +42,8 @@ namespace Library
             {
                 total += item.GetItemDefenseValue();
             }
-            if(HasSpellBook)
+            if(HasSpellBook) // Como es un mago, en caso de tener libro de hechizos, para calcular la defensa total también se toma en cuenta
+            // el defenseValue del libro de hechizos.
             {
                 total += CharacterSpells.GetBookDefenseValue();
             }
@@ -104,13 +106,13 @@ namespace Library
             }
         }
 
-        public void AddSpellBook()
+        public void AddSpellBook() // Le agrega el libro de hechizos
         {
-            this.HasSpellBook = true;
+            this.HasSpellBook = true; // Como ahora tendrá un libro de hechizos el booleano "TieneLibroDeHechizos" es true
             this.CharacterSpells = new SpellBook();
         }
 
-        public void AddSpellToSpellBook(Spell spell)
+        public void AddSpellToSpellBook(Spell spell) // Añade hechizos a su libro de hechizos
         {
             if(this.HasSpellBook)
             {
@@ -121,16 +123,9 @@ namespace Library
                 Console.WriteLine($"{this.Name} no tiene libro de hechizos, por lo que no se pudo agregar el hechizo.");
             }
         }
-        public void RemoveSpellFromSpellBook(Spell spell)
+        public void RemoveSpellFromSpellBook(Spell spell) // Remueve hechizos de su libro de hechizos
         {
-            if(this.CharacterSpells.Spells.Contains(spell))
-            {
                 this.CharacterSpells.RemoveSpell(spell);
-            }
-            else
-            {
-                Console.WriteLine($"{this.Name} no tiene el hechizo en su libro.");
-            }
         }
     }
 }

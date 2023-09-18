@@ -2,7 +2,7 @@ using System;
 
 namespace Library
 {
-    public class Spell
+    public class Spell // Clase de los objetos Hechizos.
     {
         string Name;
         double AttackValue;
@@ -15,9 +15,10 @@ namespace Library
             this.DefenseValue = defenseValue;
         }
 
-        static public Spell CreateSpell(string name, double attackValue, double defenseValue)
+        static public Spell CreateSpell(string name, double attackValue, double defenseValue) // Método que crea el hechizo en caso de ser
+        // válido (que el nombre no sea nulo ni un espacio en blanco, y que el valor de ataque y el valor de defensa no sean menores a 0)
         {
-            if (!string.IsNullOrWhiteSpace(name) && !double.IsNaN(attackValue) && !double.IsNaN(defenseValue) && attackValue >= 0 && defenseValue >= 0)
+            if (!string.IsNullOrWhiteSpace(name) && attackValue >= 0 && defenseValue >= 0)
             {
                 return new Spell(name, attackValue, defenseValue);
             }
@@ -35,6 +36,10 @@ namespace Library
         public double GetSpellDefenseValue()
         {
             return this.DefenseValue;
+        }
+        public string GetSpellName()
+        {
+            return this.Name;
         }
     }
 }

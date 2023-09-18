@@ -8,28 +8,39 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            Wizard PepeElMago = CharacterCreator.CreateWizard("", 500);
-            Console.WriteLine(PepeElMago.GetType());
-            /*PepeElMago.AddSpellBook();
-            Wizard GonzaloElFlipanteHechizeroSublimeDeLosCojones = CharacterCreator.CreateWizard("Gonzalo", 500);
-            GonzaloElFlipanteHechizeroSublimeDeLosCojones.AddSpellBook();
+            // Se creó algunos objetos para ver cómo funcionaban en consola.
+            Wizard Vassallito = CharacterCreator.CreateWizard ("El Mago Vassallito", 10);
+            Spell Fueguito = Spell.CreateSpell("Fuego", 150, 0);
+            Spell Aguita = Spell.CreateSpell ("Agua", 20, 50);
+            Spell Tormentita = Spell.CreateSpell ("Tormenta", 75, 40);
+            Vassallito.AddSpellBook();
+            Vassallito.AddSpellToSpellBook(Fueguito);
+            Vassallito.AddSpellToSpellBook(Aguita);
+            Vassallito.AddSpellToSpellBook(Fueguito);
+            Vassallito.AddSpellToSpellBook(Aguita);
+            Vassallito.RemoveSpellFromSpellBook(Tormentita);
+            Wizard PepeElMago = CharacterCreator.CreateWizard("Pepe", 500);
+            PepeElMago.AddSpellBook();
+            Wizard GonzaloElFlipanteHechizero = CharacterCreator.CreateWizard("Gonzalo", 500);
+            GonzaloElFlipanteHechizero.AddSpellBook();
             Dwarf EnanoDeViral = CharacterCreator.CreateDwarf("Enanito", 300);
             Elf PapaPitufo = CharacterCreator.CreateElf("Papi", 1500);
             Item Bastoncito = ItemCreator.CreateItem("Bastón", 50, 10);
             Item Espadita = ItemCreator.CreateItem("Espada", 100, 0);
             Item Escudito = ItemCreator.CreateItem ("Escudo", 5, 50);
-            Spell Fueguito = Spell.CreateSpell("Fuego", 150, 0);
-            Spell Aguita = Spell.CreateSpell ("Agua", 20, 50);
-            Spell Tormentita = Spell.CreateSpell ("Tormenta", 75, 40);
             PepeElMago.AddItem(Bastoncito);
-            GonzaloElFlipanteHechizeroSublimeDeLosCojones.AddItem(Espadita);
+            GonzaloElFlipanteHechizero.AddItem(Espadita);
             PepeElMago.AddSpellToSpellBook(Fueguito);
-            GonzaloElFlipanteHechizeroSublimeDeLosCojones.AddSpellToSpellBook(Aguita);
-            PepeElMago.AttackWizard(GonzaloElFlipanteHechizeroSublimeDeLosCojones);
-            GonzaloElFlipanteHechizeroSublimeDeLosCojones.AttackWizard(PepeElMago);
-            GonzaloElFlipanteHechizeroSublimeDeLosCojones.HealWizardAlly(PepeElMago);
-            GonzaloElFlipanteHechizeroSublimeDeLosCojones.AttackDwarf(EnanoDeViral);
-            PepeElMago.HealDwarfAlly(EnanoDeViral);*/
+            GonzaloElFlipanteHechizero.AddSpellToSpellBook(Aguita);
+            PepeElMago.AttackWizard(GonzaloElFlipanteHechizero);
+            GonzaloElFlipanteHechizero.AttackWizard(PepeElMago);
+            GonzaloElFlipanteHechizero.HealWizardAlly(PepeElMago);
+            GonzaloElFlipanteHechizero.AttackDwarf(EnanoDeViral);
+            PepeElMago.HealDwarfAlly(EnanoDeViral);
+            // Aclaración: Todas las clases, excepto Wizard que tiene sus cosas agregadas con respecto al libro de hechizos y están aclaradas
+            // en su clase con comentarios respectivos, tienen los mismos métodos para atacar, curar, ser atacados y ser curados. Entonces
+            // simplemente se aclaró cómo funcionan estos métodos en una sola clase la cual fue Dwarf. Véase Dwarf para más aclaración al
+            // respecto 
         }
     }
 }
