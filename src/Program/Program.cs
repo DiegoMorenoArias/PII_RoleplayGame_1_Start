@@ -9,7 +9,7 @@ namespace Program
         static void Main(string[] args)
         {
             // Se creó algunos objetos para ver cómo funcionaban en consola.
-            Wizard Vassallito = CharacterCreator.CreateWizard ("El Mago Vassallito", 10);
+            Wizard Vassallito = CharacterCreator.CreateWizard("El Mago Vassallito", 10);
             Spell Fueguito = Spell.CreateSpell("Fuego", 150, 0);
             Spell Aguita = Spell.CreateSpell ("Agua", 20, 50);
             Spell Tormentita = Spell.CreateSpell ("Tormenta", 75, 40);
@@ -25,18 +25,9 @@ namespace Program
             GonzaloElFlipanteHechizero.AddSpellBook();
             Dwarf EnanoDeViral = CharacterCreator.CreateDwarf("Enanito", 300);
             Elf PapaPitufo = CharacterCreator.CreateElf("Papi", 1500);
-            Item Bastoncito = ItemCreator.CreateItem("Bastón", 50, 10);
-            Item Espadita = ItemCreator.CreateItem("Espada", 100, 0);
-            Item Escudito = ItemCreator.CreateItem ("Escudo", 5, 50);
-            PepeElMago.AddItem(Bastoncito);
-            GonzaloElFlipanteHechizero.AddItem(Espadita);
-            PepeElMago.AddSpellToSpellBook(Fueguito);
-            GonzaloElFlipanteHechizero.AddSpellToSpellBook(Aguita);
-            PepeElMago.AttackWizard(GonzaloElFlipanteHechizero);
-            GonzaloElFlipanteHechizero.AttackWizard(PepeElMago);
-            GonzaloElFlipanteHechizero.HealWizardAlly(PepeElMago);
-            GonzaloElFlipanteHechizero.AttackDwarf(EnanoDeViral);
-            PepeElMago.HealDwarfAlly(EnanoDeViral);
+            EnanoDeViral.AddItem("Shield");
+            PapaPitufo.AddItem("Sword");
+            PapaPitufo.AttackCharacter(EnanoDeViral);
             // Aclaración: Todas las clases, excepto Wizard que tiene sus cosas agregadas con respecto al libro de hechizos y están aclaradas
             // en su clase con comentarios respectivos, tienen los mismos métodos para atacar, curar, ser atacados y ser curados. Entonces
             // simplemente se aclaró cómo funcionan estos métodos en una sola clase la cual fue Dwarf. Véase Dwarf para más aclaración al

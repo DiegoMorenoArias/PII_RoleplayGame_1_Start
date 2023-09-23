@@ -3,25 +3,28 @@ using System.Collections.Generic;
 
 namespace Library
 {
-    public class Dwarf // Clase de los objetos Enano
+    public class Dwarf : ICharacter // Clase de los objetos Enano
     {
-        private string Name;
-        private double Health;
-        private double InitialHealth;
-        List<Item> Items = new List<Item>{}; // Lista de objetos items, son todos los items que tiene el personaje
+        public string Name {get;}
+        public double Health {get; private set;}
+        public double InitialHealth {get;}
+        public List<IAttackItem> AttackItems {get;}
+        public List<IDefenseItem> DefenseItems {get;} // Lista de objetos items, son todos los items que tiene el personaje
 
         public Dwarf(string name, double health)
         {
             this.Name = name;
             this.Health = health;
             this.InitialHealth = health; // atributo que servirá cuando uno es curado
+            this.AttackItems = new List<IAttackItem>{};
+            this.DefenseItems = new List<IDefenseItem>{};
         }
 
         public double GetTotalAttackValue() // Método que se encarga de calcular el valor total del ataque del personaje, esto lo hace
         // sumando el valor de ataque de cada uno de sus items.
         {
             double total = 0;
-            foreach (Item item in this.Items)
+            foreach (IAttackItem item in this.AttackItems)
             {
                 total += item.GetItemAttackValue();
             }
@@ -32,7 +35,7 @@ namespace Library
         // sumando el valor de defensa de cada uno de sus items.
         {
             double total = 0;
-            foreach (Item item in this.Items)
+            foreach (IDefenseItem item in this.DefenseItems)
             {
                 total += item.GetItemDefenseValue();
             }
@@ -46,17 +49,9 @@ namespace Library
             Console.WriteLine($"{name} atacó a {this.Name} por {attackValue*(100/(100+this.GetTotalDefenseValue()))}. \n {this.Name} ahora tiene {this.Health} puntos de vida. \n");
         }
 
-        public void AttackWizard(Wizard wizard) // Método para atacar a un mago.
+        public void AttackCharacter(ICharacter character) // Método para atacar a un mago.
         {
-            wizard.GetAttacked(this.GetTotalAttackValue(), this.Name);
-        }
-        public void AttackDwarf(Dwarf dwarf) // Método para atacar a un enano.
-        {
-            dwarf.GetAttacked(this.GetTotalAttackValue(), this.Name);
-        }
-        public void AttackElf(Elf elf) // Método para atacar a un elfo.
-        {
-            elf.GetAttacked(this.GetTotalAttackValue(), this.Name);
+            character.GetAttacked(this.GetTotalAttackValue(), this.Name);
         }
         public void GetHealed(string healerName) // Método "Ser curado" que efectúa la curación del personaje haciendo que su vida sea igual al
         // atributo InitialHealth. Además indica por quién fue curado y cuánta vida tiene ahora.
@@ -64,35 +59,52 @@ namespace Library
             this.Health = this.InitialHealth;
             Console.WriteLine($"{this.Name} fue curado por {healerName}, y ahora tiene {this.Health} puntos de vida.");
         }
-        public void HealWizardAlly(Wizard wizard) // Método para curar a un mago.
+        public void HealAlly(ICharacter character) // Método para curar a un mago.
         {
-            wizard.GetHealed(this.Name);
+            character.GetHealed(this.Name);
         }
 
-        public void HealDwarfAlly(Dwarf dwarf) // Método para curar a un enano.
+        public void AddItem(string name)
         {
-            dwarf.GetHealed(this.Name);
-        }
-
-        public void HealElfAlly(Elf elf) // Método para curar a un elfo.
-        {
-            elf.GetHealed(this.Name);
-        }
-
-        public void AddItem(Item item) // Método para añadir un item a la lista de items del personaje.
-        {
-            this.Items.Add(item);
-        }
-
-        public void RemoveItem(Item item) // Método para remover un item de la lista de items del personaje.
-        {
-            if(this.Items.Contains(item))
+            if (name == "Fan")
             {
-                this.Items.Remove(item);
+                if (Fan.ListOfTypes.Contains("dwarf"))
+                {
+                    AttackItems.Add(new Fan());
+                    DefenseItems.Add(new Fan());
+                }
             }
-            else
+            else if (name == "Shield")
             {
-                Console.WriteLine($"{this.Name} no tiene {item.Name}.");
+                if (Shield.ListOfTypes.Contains("dwarf"))
+                {
+                    DefenseItems.Add(new Shield());
+                }
+            }
+            else if (name == "Sword")
+            {
+                if (Sword.ListOfTypes.Contains("dwarf"))
+                {
+                    AttackItems.Add(new Sword());
+                }
+            }
+        }
+
+        public void RemoveItem(string name)
+        {
+            foreach (IAttackItem item in AttackItems)
+            {
+                if (item.Name == name)
+                {
+                    AttackItems.Remove(item);
+                } 
+            }
+            foreach (IDefenseItem item in DefenseItems)
+            {
+                if (item.Name == name)
+                {
+                    DefenseItems.Remove(item);
+                }
             }
         }
     }

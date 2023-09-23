@@ -1,29 +1,33 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Library
 {
-    public class Wizard
+    public class Wizard : ICharacter
     {
-        private string Name;
-        private double Health;
-        private double InitialHealth;
+        public string Name {get;}
+        public double Health {get; private set;}
+        public double InitialHealth {get;}
         bool HasSpellBook = false; // Bool que sirve para saber si el mago tiene libro de hechizos o no, porque podría no tenerlo.
         SpellBook CharacterSpells = null; // Libro de hechizos del mago, comienza siendo null porque no necesariamente un mago tendrá uno.
-        List<Item> Items = new List<Item>{};
+        public List<IAttackItem> AttackItems {get;}
+        public List<IDefenseItem> DefenseItems {get;}
 
         public Wizard(string name, double health)
         {
             this.Name = name;
             this.Health = health;
             this.InitialHealth = health;
+            this.AttackItems = new List<IAttackItem>{};
+            this.DefenseItems = new List<IDefenseItem>{};
         }
 
         public double GetTotalAttackValue()
         {
             double total = 0;
-            foreach (Item item in this.Items)
+            foreach (IAttackItem item in this.AttackItems)
             {
                 total += item.GetItemAttackValue();
             }
@@ -38,7 +42,7 @@ namespace Library
         public double GetTotalDefenseValue()
         {
             double total = 0;
-            foreach (Item item in this.Items)
+            foreach (IDefenseItem item in this.DefenseItems)
             {
                 total += item.GetItemDefenseValue();
             }
@@ -55,17 +59,9 @@ namespace Library
             this.Health -= attackValue*(100/(100+this.GetTotalDefenseValue())); // usamos la formula de armadura del LoL :)
             Console.WriteLine($"{name} atacó a {this.Name} por {attackValue*(100/(100+this.GetTotalDefenseValue()))}. \n {this.Name} ahora tiene {this.Health} puntos de vida. \n");
         }
-        public void AttackWizard(Wizard wizard)
+        public void AttackCharacter(ICharacter character)
         {
-            wizard.GetAttacked(this.GetTotalAttackValue(), this.Name);
-        }
-        public void AttackDwarf(Dwarf dwarf)
-        {
-            dwarf.GetAttacked(this.GetTotalAttackValue(), this.Name);
-        }
-        public void AttackElf(Elf elf)
-        {
-            elf.GetAttacked(this.GetTotalAttackValue(), this.Name);
+            character.GetAttacked(this.GetTotalAttackValue(), this.Name);
         }
 
         public void GetHealed(string healerName)
@@ -74,35 +70,51 @@ namespace Library
             Console.WriteLine($"{this.Name} fue curado por {healerName}, y ahora tiene {this.Health} puntos de vida.");
         }
 
-        public void HealWizardAlly(Wizard wizard)
+        public void HealAlly(ICharacter character)
         {
-            wizard.GetHealed(this.Name);
+            character.GetHealed(this.Name);
         }
-
-        public void HealDwarfAlly(Dwarf dwarf)
+        public void AddItem(string name)
         {
-            dwarf.GetHealed(this.Name);
-        }
-
-        public void HealElfAlly(Elf elf)
-        {
-            elf.GetHealed(this.Name);
-        }
-
-        public void AddItem(Item item)
-        {
-            this.Items.Add(item);
-        }
-
-        public void RemoveItem(Item item)
-        {
-            if(this.Items.Contains(item))
+            if (name == "Fan")
             {
-                this.Items.Remove(item);
+                if (Fan.ListOfTypes.Contains("wizard"))
+                {
+                    AttackItems.Add(new Fan());
+                    DefenseItems.Add(new Fan());
+                }
             }
-            else
+            else if (name == "Shield")
             {
-                Console.WriteLine($"{this.Name} no tiene {item.Name}.");
+                if (Shield.ListOfTypes.Contains("wizard"))
+                {
+                    DefenseItems.Add(new Shield());
+                }
+            }
+            else if (name == "Sword")
+            {
+                if (Sword.ListOfTypes.Contains("wizard"))
+                {
+                    AttackItems.Add(new Sword());
+                }
+            }
+        }
+
+        public void RemoveItem(string name)
+        {
+            foreach (IAttackItem item in AttackItems)
+            {
+                if (item.Name == name)
+                {
+                    AttackItems.Remove(item);
+                } 
+            }
+            foreach (IDefenseItem item in DefenseItems)
+            {
+                if (item.Name == name)
+                {
+                    DefenseItems.Remove(item);
+                }
             }
         }
 
@@ -125,7 +137,7 @@ namespace Library
         }
         public void RemoveSpellFromSpellBook(Spell spell) // Remueve hechizos de su libro de hechizos
         {
-                this.CharacterSpells.RemoveSpell(spell);
+            this.CharacterSpells.RemoveSpell(spell);
         }
     }
 }
