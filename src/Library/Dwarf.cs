@@ -88,6 +88,10 @@ namespace Library
                     AttackItems.Add(new Sword());
                 }
             }
+            else
+            {
+                Console.WriteLine($"El item {name} no existe.");
+            }
         }
 
         public void RemoveItem(string name)
