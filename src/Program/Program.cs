@@ -25,7 +25,7 @@ namespace Program
             GonzaloElFlipanteHechizero.AddSpellBook();
             Dwarf EnanoDeViral = CharacterCreator.CreateDwarf("Enanito", 300);
             Elf PapaPitufo = CharacterCreator.CreateElf("Papi", 1500);
-            EnanoDeViral.AddItem("Shield");
+            EnanoDeViral.AddItem("MagicStick");
             PapaPitufo.AddItem("Sword");
             PapaPitufo.AttackCharacter(EnanoDeViral);
             // Aclaración: Todas las clases, excepto Wizard que tiene sus cosas agregadas con respecto al libro de hechizos y están aclaradas

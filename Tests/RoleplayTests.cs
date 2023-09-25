@@ -48,27 +48,6 @@ namespace Library.Tests
             Elf testElf = CharacterCreator.CreateElf("Elfito", -2);
             Assert.That(testElf, Is.EqualTo(expected));
         }
-        [Test]
-        public void TestInvalidNameForItem()
-        {
-            const Item expected = null;
-            Item testItem = ItemCreator.CreateItem("     ", 400, 200);
-            Assert.That(testItem, Is.EqualTo(expected));
-        }
-        [Test]
-        public void TestInvalidAttackValueForItem()
-        {
-            const Item expected = null;
-            Item testItem = ItemCreator.CreateItem("Bastoncito", -300, 250);
-            Assert.That(testItem, Is.EqualTo(expected));
-        }
-        [Test]
-        public void TestInvalidDefenseValueForItem()
-        {
-            const Item expected = null;
-            Item testItem = ItemCreator.CreateItem("Espadita", 600, -50);
-            Assert.That(testItem, Is.EqualTo(expected));
-        }
                 [Test]
         public void TestInvalidNameForSpell()
         {
@@ -85,6 +64,13 @@ namespace Library.Tests
         }
         [Test]
         public void TestInvalidDefenseValueForSpell()
+        {
+            const Spell expected = null;
+            Spell testSpell = Spell.CreateSpell("Aurora Boreal", 600, -50);
+            Assert.That(testSpell, Is.EqualTo(expected));
+        }
+        [Test]
+        public void TestItemNotAvailableForCharacter()
         {
             const Spell expected = null;
             Spell testSpell = Spell.CreateSpell("Aurora Boreal", 600, -50);

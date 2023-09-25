@@ -86,7 +86,7 @@ namespace Library
             }
             else
             {
-                Console.WriteLine($"El item {name} no existe.");
+                Console.WriteLine($"El item {name} no existe o no es válido para este tipo de personaje..");
             }
         }
         public void RemoveItem(string name)
