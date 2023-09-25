@@ -60,51 +60,24 @@ namespace Library
             character.GetHealed(this.Name);
         }
 
-        public void AddItem(string name)
+        public void AddAttackItem(IAttackItem item)
         {
-            if (name == "Fan")
-            {
-                if (Fan.ListOfTypes.Contains("elf"))
-                {
-                    AttackItems.Add(new Fan());
-                    DefenseItems.Add(new Fan());
-                }
-            }
-            else if (name == "Shield")
-            {
-                if (Shield.ListOfTypes.Contains("elf"))
-                {
-                    DefenseItems.Add(new Shield());
-                }
-            }
-            else if (name == "Sword")
-            {
-                if (Sword.ListOfTypes.Contains("elf"))
-                {
-                    AttackItems.Add(new Sword());
-                }
-            }
-            else
-            {
-                Console.WriteLine($"El item {name} no existe o no es válido para este tipo de personaje..");
-            }
+            AttackItems.Add(item);
         }
-        public void RemoveItem(string name)
+
+        public void AddDefenseItem(IDefenseItem item)
         {
-            foreach (IAttackItem item in AttackItems)
-            {
-                if (item.Name == name)
-                {
-                    AttackItems.Remove(item);
-                } 
-            }
-            foreach (IDefenseItem item in DefenseItems)
-            {
-                if (item.Name == name)
-                {
-                    DefenseItems.Remove(item);
-                }
-            }
+            DefenseItems.Add(item);
+        }
+
+        public void RemoveAttackItem(IAttackItem item)
+        {
+            AttackItems.Remove(item);
+        }
+
+        public void RemoveDefenseItem(IDefenseItem item)
+        {
+            DefenseItems.Remove(item);
         }
     }
 }

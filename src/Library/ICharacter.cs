@@ -17,8 +17,10 @@ namespace Library
         public void AttackCharacter(ICharacter character);
         public void GetHealed(string healerName);
         public void HealAlly(ICharacter character);
-        public void AddItem(string name);
-        public void RemoveItem(string name);
+        public void AddAttackItem(IAttackItem item);
+        public void AddDefenseItem(IDefenseItem item);
+        public void RemoveAttackItem(IAttackItem item);
+        public void RemoveDefenseItem(IDefenseItem item);
 
 
     }
