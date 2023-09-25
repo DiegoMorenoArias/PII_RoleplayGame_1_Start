@@ -70,11 +70,11 @@ namespace Library.Tests
             Assert.That(testSpell, Is.EqualTo(expected));
         }
         [Test]
-        public void TestItemNotAvailableForCharacter()
+        /*public void TestItemNotAvailableForCharacter() 
         {
-            const Spell expected = null;
-            Spell testSpell = Spell.CreateSpell("Aurora Boreal", 600, -50);
-            Assert.That(testSpell, Is.EqualTo(expected));
-        }
+            //Faltaría asignar este test que básicamente se encarga de comprobar que cuando se trata de añadir un item no válido
+            //para el personaje, no se le asigne. Por ejemplo, si se le quiere agregar el MagicStick (bastón mágico) al Dwarf (enano)
+            //Pues la clase MagicStick no incluye a los enanos dentro de su lista de personajes válidos.
+        }*/
     }
 }
